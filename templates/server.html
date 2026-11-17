@@ -723,6 +723,10 @@
         const dot = document.getElementById('sshTrustDot');
         if (!btn || !text || !dot) return;
         btn.removeAttribute('aria-busy');
+        // The skeleton markup ships the button with data-state="loading";
+        // that selector paints the dot grey and outranks the state classes
+        // below, so it must go once the real status is known.
+        btn.removeAttribute('data-state');
         btn.classList.remove('is-urgent', 'is-danger', 'is-ok');
         dot.classList.remove('is-urgent', 'is-danger', 'is-ok');
         if (state === 'changed') {
